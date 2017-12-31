@@ -3,8 +3,7 @@
 ## 功能
 监视指定 BCH/BTC 地址，有新收歀时，发一条通知，支持微信和 Telegram
 
-![]( http://ww1.sinaimg.cn/large/4e5d3ea7ly1fn0cyz95j3j20gd041mxd.jpg)
-![]( http://ww1.sinaimg.cn/large/4e5d3ea7ly1fn0d91gqbgj20cq065dg3.jpg)
+![image](https://user-images.githubusercontent.com/3146103/34462800-82bb8ab0-ee86-11e7-9a0a-88e6013d7366.png)
 
 ## 安装
 ```shell
@@ -42,7 +41,7 @@ pm2 start index.js --watch --name 'blockchain-monitor'
 
 V2EX 讨论 [BCH/BTC 地址收款监视，有新收歀时，发一条微信或 Telegram 通知 - V2EX](https://www.v2ex.com/t/419070)
 
-打赏鼓励开发者：
-Bitcoin Cash: 1M1FYu4zuVaxRPWLZG5CnP8qQrZaqu6c2L
-Bitcoin Core: 14xjRGx9m7JpGLm6MyMoHeJBEviscgvbcp
+打赏鼓励开发者：  
+Bitcoin Cash: 1M1FYu4zuVaxRPWLZG5CnP8qQrZaqu6c2L  
+Bitcoin Core: 14xjRGx9m7JpGLm6MyMoHeJBEviscgvbcp  
 Ethereum: 0xd375c7e5b0456a6df984c36ef4d5333e1468666b
