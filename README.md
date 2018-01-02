@@ -17,11 +17,10 @@ $ cp config.json.template config.json
 ```
 配置说明
 
-  * `address_type`  bch/btc
-  * `observed_address` 监视地址
-  * `server_chan_key`  需要你配置 [Server酱](http://sc.ftqq.com/3.version)，并提到专属 key
-	* `telegram_bot_key` 和 `telegram_chat_id"`，请参考 Telegram Bot Api 文档设置
-	* 设置 key 的才会发送，一般根据使用偏好，设置一个即可
+  * `address_type`  bch 或 btc
+  * `observed_address` 需要监视钱包地址，必填
+  * `server_chan_key`  需要你配置 [Server酱](http://sc.ftqq.com/3.version)，并提到专属 key ，默认为空。配置方生效
+  * `telegram_bot_key` 和 `telegram_chat_id"`，请参考 Telegram Bot Api 文档设置
 
 ```
 {
@@ -38,10 +37,3 @@ $ cp config.json.template config.json
 pm2 start index.js --watch --name 'blockchain-monitor'
 ```
 
-
-V2EX 讨论 [BCH/BTC 地址收款监视，有新收歀时，发一条微信或 Telegram 通知 - V2EX](https://www.v2ex.com/t/419070)
-
-打赏鼓励开发者：  
-Bitcoin Cash: 1M1FYu4zuVaxRPWLZG5CnP8qQrZaqu6c2L  
-Bitcoin Core: 14xjRGx9m7JpGLm6MyMoHeJBEviscgvbcp  
-Ethereum: 0xd375c7e5b0456a6df984c36ef4d5333e1468666b

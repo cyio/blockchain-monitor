@@ -30,7 +30,7 @@ const app = {
         [查看交易](https://m${isBCH ? 'bch' : ''}.btc.com/${data.last_tx})
         `
         console.log(desp)
-				// return		// debug 时，取消注释
+        // return		// debug 时，取消注释
         if (config.server_chan_key) {
           this.serverChan(title, desp)
         }
@@ -43,9 +43,10 @@ const app = {
   async getTxDetail(id) {
     const detail = await axios.get(`${API}/tx/${id}`).then(res => {
       const data = res.data.data
+      const myOutput = data.outputs.filter(output => output.addresses[0] === config.observed_address)
       return {
         'time': data.created_at,
-        'value': data.outputs_value
+        'value': myOutput[0].value
       }
     })
     return detail
