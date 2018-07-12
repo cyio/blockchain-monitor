@@ -18,9 +18,7 @@ const rl = readline.createInterface({
 function collectAddressFromLine(line) {
   if (line) {
     let address = line.trim()
-    if (bchaddr.isCashAddress(address)) {
-      address = bchaddr.toLegacyAddress(address)
-    }
+    address = bchaddr.toLegacyAddress(address)  // btc.com api 只支持旧版地址
     addresses.push(address)
   }
 }
@@ -54,8 +52,8 @@ const app = {
       let data = res.data.data
       if (!data) return console.error('地址无效')
       if (data.length) {
-        for (let itemData of data) {
-          this.checkBalance(data)
+        for (let item of data) {
+          this.checkBalance(item)
         }
       } else {
         this.checkBalance(data)
@@ -70,6 +68,7 @@ const app = {
       const desp = `
 
         创建时间 ${this.formatDate(txDetail.time)}  
+        地址：${isBCH ? bchaddr.toCashAddress(data.address) : data.address}
         [查看交易](https://m${isBCH ? 'bch' : ''}.btc.com/${data.last_tx})
         `
       console.log(desp)
