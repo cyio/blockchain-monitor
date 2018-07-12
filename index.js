@@ -58,7 +58,7 @@ const app = {
       } else {
         this.checkBalance(data)
       }
-    })
+    }).catch(error => console.log(error))
   },
   async checkBalance(data) {
     if (data.unconfirmed_received && data.last_tx !== lastTxId) { // debug 时，第一个条件改为相反
@@ -82,15 +82,18 @@ const app = {
     }
   },
   async getTxDetail(id) {
-    const detail = await axios.get(`${API}/tx/${id}`).then(res => {
+    let url = `${API}/tx/${id}`
+    return axios.get(url).then(res => {
       const data = res.data.data
       const myOutput = data.outputs.filter(output => output.addresses[0] === config.observed_address)
       return {
         'time': data.created_at,
         'value': myOutput[0].value
       }
+    }).catch(error => {
+      console.log(error)
+      return url
     })
-    return detail
   },
   serverChan(title, desp) {
     return axios.post(`http://sc.ftqq.com/${config.serverchan_key}.send`,
