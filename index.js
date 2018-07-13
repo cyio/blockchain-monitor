@@ -62,13 +62,14 @@ const app = {
   },
   async checkBalance(data) {
     if (data.unconfirmed_received && data.last_tx !== lastTxId) { // debug 时，第一个条件改为相反
+      await sleep(3000)  // 请求间隔太短，会被拒绝
       lastTxId = data.last_tx
       const txDetail = await this.getTxDetail(data.last_tx)
       const title = `收到 ${txDetail.value * 0.00000001} ${isBCH ? 'BCH' : 'BTC'}  `
       const desp = `
 
         创建时间 ${this.formatDate(txDetail.time)}  
-        地址：${isBCH ? bchaddr.toCashAddress(data.address) : data.address}
+        地址：${isBCH ? (bchaddr.toCashAddress(data.address)).substr(12) : data.address}
         [查看交易](https://m${isBCH ? 'bch' : ''}.btc.com/${data.last_tx})
         `
       console.log(desp)
@@ -113,7 +114,7 @@ const app = {
     const url = `https://api.telegram.org/bot${config.telegram_bot_key}/sendMessage?chat_id=${config.telegram_chat_id}&disable_web_page_preview=true&parse_mode=markdown`
     axios.post(url, 
       querystring.stringify({
-        text: text
+        text: text.replace(/(?=[*_`\[])/g, '\\')
       }))
       .then(res => {
         if (res.data.ok) {
@@ -126,3 +127,6 @@ const app = {
   }
 }
 
+function sleep(ms = 0) {
+  return new Promise((resolve, reject) => setTimeout(resolve, ms));
+}
