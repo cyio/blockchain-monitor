@@ -64,11 +64,9 @@ const app = {
     if (data.unconfirmed_received && data.last_tx !== lastTxId) { // debug 时，第一个条件改为相反
       await sleep(3000)  // 请求间隔太短，会被拒绝
       lastTxId = data.last_tx
-      const txDetail = await this.getTxDetail(data.last_tx)
-      const title = `收到 ${txDetail.value * 0.00000001} ${isBCH ? 'BCH' : 'BTC'}  `
+      const title = `收到 ${data.unconfirmed_received * 0.00000001} ${isBCH ? 'BCH' : 'BTC'}  `
       const desp = `
 
-        创建时间 ${this.formatDate(txDetail.time)}  
         地址：${isBCH ? (bchaddr.toCashAddress(data.address)).substr(12) : data.address}
         [查看交易](https://m${isBCH ? 'bch' : ''}.btc.com/${data.last_tx})
         `
