@@ -1,7 +1,7 @@
 # blockchain-monitor
 
 ## 功能
-监视指定 BCH/BTC 地址，有新收歀时，发一条通知，支持微信和 Telegram
+监视指定 BSV/BCH/BTC 地址，有新收歀时，发一条通知，支持微信和 Telegram
 
 ![image](https://user-images.githubusercontent.com/3146103/34462800-82bb8ab0-ee86-11e7-9a0a-88e6013d7366.png)
 
@@ -17,13 +17,13 @@ $ cp config.json.template config.json
 ```
 配置说明
 
-  * `address_type`  bch 或 btc
+  * `address_type`  要监视的地址类型，bsv 或 bch 或 btc
   * `server_chan_key`  需要你配置 [Server酱](http://sc.ftqq.com/3.version)，并提到专属 key ，默认为空。配置方生效
   * `telegram_bot_key` 和 `telegram_chat_id"`，请参考 Telegram Bot Api 文档设置
 
 ```
 {
-  "address_type": "bch",
+  "address_type": "bsv",
   "server_chan_key": "",
   "telegram_bot_key": "",
   "telegram_chat_id": ""
